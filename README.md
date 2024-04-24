@@ -68,3 +68,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 =======
 # Fruteria
 Trabajo del Curso Desarrollo Web
+# Intalar composer 
+
+Ejecuta en el Terminal 
+composer install
+Para poder Correr el Proyecto
