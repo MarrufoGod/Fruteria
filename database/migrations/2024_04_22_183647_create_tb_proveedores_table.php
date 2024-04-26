@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_proveedores', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('Nombre');
             $table->string('Telefono')->nullable();
             $table->string('Direccion')->nullable();
@@ -29,3 +29,4 @@ return new class extends Migration
         Schema::dropIfExists('tb_proveedores');
     }
 };
+

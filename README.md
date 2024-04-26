@@ -72,4 +72,11 @@ Trabajo del Curso Desarrollo Web
 
 Ejecuta en el Terminal 
 composer install
-Para poder Correr el Proyecto
+
+# dashboard
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+
+
+Para poder Correr el Proyecto 
