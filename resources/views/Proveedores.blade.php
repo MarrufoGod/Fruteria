@@ -15,6 +15,57 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <!-- Modal para Insertar -->
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Insertar
+                                        Proveedor</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('create') }}" method="post">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">ID
+                                                Proveedor</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="txtidproveedor">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="txtnombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Telefono</label>
+                                            <input type="number" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="txttelefono">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Direccion</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="txtdireccion">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Correo
+                                                Electronico</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="txtcorreo">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -27,6 +78,12 @@
 
                             </tr>
                         </thead>
+                        <div style="text-align: right;">
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-info"
+                                style="margin-left: auto;">
+                                Agregar Proveedor
+                            </button>
+                        </div>
                         <tbody>
                             @foreach ($datos as $item)
                                 <tr>
@@ -36,13 +93,13 @@
                                     <th>{{ $item->Direccion }}</th>
                                     <th>{{ $item->Correo_electronico }}</th>
                                     <th>
-                                        <a  data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal" class="btn btn-danger btn-sm">
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-circle-minus"></i>
                                         </a>
 
                                         <a data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal2"class="btn btn-info btn-sm">
+                                            data-bs-target="#exampleModal2"class="btn btn-success btn-sm">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </th>
@@ -53,7 +110,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Proveedor</h1>
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar
+                                                        Proveedor</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -68,27 +126,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <!-- Modal para Actualizar -->
-                                     <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                     <div class="modal-dialog">
-                                         <div class="modal-content">
-                                             <div class="modal-header">
-                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Proveedor</h1>
-                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                     aria-label="Close"></button>
-                                             </div>
-                                             <div class="modal-body">
-                                                 Deseas eliminar el Proveedor?
-                                             </div>
-                                             <div class="modal-footer">
-                                                 <button type="button" class="btn btn-secondary"
-                                                     data-bs-dismiss="modal">Cerrar</button>
-                                                 <button type="button" class="btn btn-primary">Confirmar</button>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
+                                    <!-- Modal para Actualizar -->
+                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar
+                                                        Proveedor</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1" class="form-label">ID
+                                                                Proveedor</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtidproveedor">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Nombre</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtnombre">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Telefono</label>
+                                                            <input type="number" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txttelefono">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Direccion</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtdireccion">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1" class="form-label">Correo
+                                                                Electronico</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtcorreo">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Confirmar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </tr>
                             @endforeach
