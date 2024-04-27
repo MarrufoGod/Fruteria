@@ -85,7 +85,7 @@
                             </button>
                         </div>
                         <tbody>
-                            @foreach ($datos as $item)
+                            @foreach ($prove as $item)
                                 <tr>
                                     <th>{{ $item->id }}</th>
                                     <th>{{ $item->Nombre }}</th>

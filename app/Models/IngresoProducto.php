@@ -17,6 +17,6 @@ class IngresoProducto extends Model
 
     public function proveedor()
     {
-        return $this->belongsTo(TbProveedor::class, 'ID_proveedor');
+        return $this->belongsTo(tb_proveedores::class, 'ID_proveedor');
     }
 }

@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tb_proveedores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
+    //Mostar lista de los Proveedores pero solo el ID
+ 
     public function listar()
     {
+        $proveedores = tb_proveedores::all();
         $datos = DB::select("select * from tb_producto");
-        return view("dashboard")->with("datos", $datos);
+        return view("dashboard", compact('proveedores', 'datos')); // Pasar los datos a la vista
+        
+
+
     }
     public function create(Request $request)
     {

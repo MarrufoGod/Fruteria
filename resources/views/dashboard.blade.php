@@ -69,9 +69,14 @@
                                                 aria-describedby="emailHelp" name="txtpreventa">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Unidad_medida</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtunidad">
+                                            <label for="exampleInputEmail1"
+                                                class="form-label">Unidad_medida</label>
+                                            <select class="form-select" id="exampleInputEmail1"
+                                                name="txtunidad">
+                                                <option value="Javas">Javas</option>
+                                                <option value="Kilogramo">Kilogramo (kg)</option>
+                                                <option value="Sacos">Sacos</option>
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">cantidad</label>
@@ -79,14 +84,25 @@
                                                 aria-describedby="emailHelp" name="txtcantidad">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Categoria</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtcantegoria">
+                                            <label for="categoria"
+                                                class="form-label">Categoria</label>
+                                            <select class="form-select" id="categoria"
+                                                name="txtcantegoria">
+                                                <option value="verduras">Verduras</option>
+                                                <option value="jugos">Tuberculos</option>
+                                                <option value="Frutos Secos">Frutos Secos</option>
+                                                <option value="Frutas">Frutas</option>
+                                                <option value="Vegetales">Vegetales</option>
+                                            </select>
                                         </div>
+                                        
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">ID_proveedor</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtproveedor">
+                                            <label for="proveedorSelect" class="form-label">Seleccionar Proveedor:</label>
+                                            <select class="form-select" id="proveedorSelect" name="txtproveedor">
+                                                @foreach($proveedores as $proveedor)
+                                                    <option value="{{ $proveedor->id }}"> {{ $proveedor->Nombre }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -103,16 +119,16 @@
 
                         <thead>
                             <tr>
-                                <th scope="col">ID_producto</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Precio_compra</th>
-                                <th scope="col">Precio_venta</th>
-                                <th scope="col">Unidad_medida</th>
-                                <th scope="col">cantidad</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">ID_proveedor</th>
-                                <th scope="col">Botones</th>
+                                <th scope="col">PRODUCTO</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">COMPRA</th>
+                                <th scope="col">VENTA</th>
+                                <th scope="col spam 2">MEDIDA</th>
+                                <th scope="col">CANTIDAD</th>
+                                <th scope="col">CATEGORIA</th>
+                                <th scope="col">PROVEEDOR</th>
+                                <th scope="col">BOTONES</th>
 
                             </tr>
                         </thead>
@@ -225,7 +241,6 @@
                                                                 Medida</label>
                                                             <select class="form-select" id="unidad_medida"
                                                                 name="txtunidadmed">
-                                                                <option value="Unidad de Medida">
                                                                     {{ $item->Unidad_medida }}</option>
                                                                 <option value="Costal">Costal</option>
                                                                 <option value="Java">Java</option>
@@ -250,7 +265,7 @@
                                                                 </option>
                                                                 <option value="verduras">Verduras</option>
                                                                 <option value="jugos">Tuberculos</option>
-                                                                <option value="frutos-secos">Frutos Secos</option>
+                                                                <option value="Frutos Secos">Frutos Secos</option>
                                                                 <option value="Frutas">Frutas</option>
                                                                 <option value="Vegetales">Vegetales</option>
                                                             </select>
