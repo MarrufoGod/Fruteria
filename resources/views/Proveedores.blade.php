@@ -100,7 +100,7 @@
                                         </a>
 
                                         <a data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal2"class="btn btn-success btn-sm">
+                                            data-bs-target="#exampleModal2{{ $item->id }}"class="btn btn-success btn-sm">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </th>
@@ -128,49 +128,61 @@
 </div>
 
 <!-- Modal para Actualizar -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Proveedor</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('update.proveedor') }}" method="post">
-                    @csrf
-                    @method('PUT') <!-- o @method('PATCH') según tu configuración -->
-
-                    <input type="hidden" name="id_proveedor" value="{{ $proveedor->id ?? '' }}">
-
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">ID Proveedor</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            name="txtidproveedor" value="{{ $proveedor->id ?? '' }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            name="txtnombre" value="{{ $proveedor->nombre ?? '' }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            name="txttelefono" value="{{ $proveedor->telefono ?? '' }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Direccion</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            name="txtdireccion" value="{{ $proveedor->direccion ?? '' }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            name="txtcorreo" value="{{ $proveedor->correo_electronico ?? '' }}">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                    </div>
+<div class="modal fade" id="exampleModal2{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar
+                                                        Proveedor</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <form action="{{ route('Proveedores.update') }}" method="post">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1" class="form-label">ID
+                                                                Proveedor</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtidproveedor" value="{{ $item->id }}" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Nombre</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtnombre" value="{{ $item->Nombre }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Telefono</label>
+                                                            <input type="number" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txttelefono" value="{{ $item->Telefono }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Direccion</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtdireccion" value="{{ $item->Direccion }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1" class="form-label">Correo
+                                                                Electronico</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                name="txtcorreo" value = "{{ $item->Correo_electronico }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Confirmar</button>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>

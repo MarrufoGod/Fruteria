@@ -37,27 +37,26 @@ class ProveedoresController extends Controller
     
     
 
-   public function update(Request $request, $id)
-{
-    try {
-        $affectedRows = DB::table('tb_proveedores')
-            ->where('ID_proveedor', $id)
-            ->update([
-                'Nombre' => $request->txtnombre,
-                'Telefono' => $request->txttelefono,
-                'Direccion' => $request->txtdireccion,
-                'Correo_electronico' => $request->txtcorreo,
-            ]);
+    public function update(Request $request)
+    {
+        try {
+            $sql = DB::update("update tb_proveedores set Nombre=?,Telefono=?,Direccion=?,Correo_electronico=? where id=?",[
 
-        if ($affectedRows > 0) {
-            return back()->with("success", "Proveedor actualizado correctamente.");
-        } else {
-            return back()->with("error", "Error al actualizar el proveedor.");
+                $request->txtnombre,
+                $request->txttelefono,
+                $request->txtdireccion,
+                $request->txtcorreo,
+                $request->txtidproveedor
+            ]);
+        } catch (\Throwable $th) {
+            $sql = 0;
         }
-    } catch (\Throwable $th) {
-        return back()->with("error", "Error al actualizar el proveedor: " . $th->getMessage());
+        if ($sql == true) {
+            return back()->with("Correcto" . "Proveedor Actualizado");
+        } else {
+            return back()->with("Error" . "Proveedor NO Actualizado");
+        }
     }
-}
 
 
     public function delete($id)

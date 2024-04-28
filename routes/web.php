@@ -30,10 +30,8 @@ Route::get('/Proveedores',[ProveedoresController::class, 'listar'])->middleware(
 // Ruta para insertar proveedores
 Route::post('/registrarProveedor', [ProveedoresController::class, 'create'])->middleware(['auth', 'verified'])->name('create.proveedor');
 
-// Ruta para modificar proveedores
-Route::put('/modificarProveedor', [ProveedoresController::class, 'update'])
-    ->middleware(['auth', 'verified'])
-    ->name('update.proveedor');
+//ruta pora modificar los productos
+Route::post('/modificarProveedor',[ProveedoresController::class, 'update'])->middleware(['auth', 'verified'])->name('Proveedores.update');
 
 
 // Ruta para eliminar proveedores
