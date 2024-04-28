@@ -25,10 +25,21 @@ Route::get('/EliminarProducto-{id}',[ProductoController::class, 'delete'])->midd
 
 
 
-//RUTA PARA PROVEEDORES
 Route::get('/Proveedores',[ProveedoresController::class, 'listar'])->middleware(['auth', 'verified'])->name('Proveedores');
 
+// Ruta para insertar proveedores
+Route::post('/registrarProveedor', [ProveedoresController::class, 'create'])->middleware(['auth', 'verified'])->name('create.proveedor');
 
+// Ruta para modificar proveedores
+Route::put('/modificarProveedor', [ProveedoresController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('update.proveedor');
+
+
+// Ruta para eliminar proveedores
+Route::delete('/eliminarProveedor-{id}', [ProveedoresController::class, 'delete'])
+    ->middleware(['auth', 'verified'])
+    ->name('delete');
 //RUTAS DEL DASHBOARD
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

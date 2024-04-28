@@ -27,7 +27,8 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('create') }}" method="post">
+                                <form action="{{ route('create.proveedor') }}" method="post">
+
                                         @csrf
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">ID
@@ -103,83 +104,73 @@
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </th>
+<!-- Modal para eliminar -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Proveedor</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deseas eliminar el Proveedor?
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('delete', ['id' => $item->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                    <!-- Modal para eliminar -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar
-                                                        Proveedor</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Deseas eliminar el Proveedor?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="button" class="btn btn-primary">Confirmar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modal para Actualizar -->
-                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar
-                                                        Proveedor</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1" class="form-label">ID
-                                                                Proveedor</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtidproveedor">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1"
-                                                                class="form-label">Nombre</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtnombre">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1"
-                                                                class="form-label">Telefono</label>
-                                                            <input type="number" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txttelefono">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1"
-                                                                class="form-label">Direccion</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtdireccion">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1" class="form-label">Correo
-                                                                Electronico</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtcorreo">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Confirmar</button>
-                                                        </div>
+<!-- Modal para Actualizar -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Proveedor</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('update.proveedor') }}" method="post">
+                    @csrf
+                    @method('PUT') <!-- o @method('PATCH') según tu configuración -->
+
+                    <input type="hidden" name="id_proveedor" value="{{ $proveedor->id ?? '' }}">
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID Proveedor</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="txtidproveedor" value="{{ $proveedor->id ?? '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="txtnombre" value="{{ $proveedor->nombre ?? '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="txttelefono" value="{{ $proveedor->telefono ?? '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="txtdireccion" value="{{ $proveedor->direccion ?? '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="txtcorreo" value="{{ $proveedor->correo_electronico ?? '' }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
                                                     </form>
                                                 </div>
                                             </div>
