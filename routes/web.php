@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InformesController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProveedoresController;
@@ -11,33 +12,46 @@ Route::get('/', function () {
 
 //RUTA PARA PRODUCTOS
 //ruta para listar los productos 
-Route::get('/dashboard',[ProductoController::class, 'listar'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProductoController::class, 'listar'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //ruta pora insertar productos
-Route::post('/registrarProducto',[ProductoController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
+Route::post('/registrarProducto', [ProductoController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
 
 //ruta pora modificar productos
-Route::post('/modificarProducto',[ProductoController::class, 'update'])->middleware(['auth', 'verified'])->name('update');
+Route::post('/modificarProducto', [ProductoController::class, 'update'])->middleware(['auth', 'verified'])->name('update');
 
 //ruta pora Eliminar productos
-Route::get('/EliminarProducto-{id}',[ProductoController::class, 'delete'])->middleware(['auth', 'verified'])->name('delete');
+Route::get('/EliminarProducto-{id}', [ProductoController::class, 'delete'])->middleware(['auth', 'verified'])->name('deleteProducto');
 
 
 
 
-Route::get('/Proveedores',[ProveedoresController::class, 'listar'])->middleware(['auth', 'verified'])->name('Proveedores');
+Route::get('/Proveedores', [ProveedoresController::class, 'listar'])->middleware(['auth', 'verified'])->name('Proveedores');
 
 // Ruta para insertar proveedores
 Route::post('/registrarProveedor', [ProveedoresController::class, 'create'])->middleware(['auth', 'verified'])->name('create.proveedor');
 
 //ruta pora modificar los productos
-Route::post('/modificarProveedor',[ProveedoresController::class, 'update'])->middleware(['auth', 'verified'])->name('Proveedores.update');
+Route::post('/modificarProveedor', [ProveedoresController::class, 'update'])->middleware(['auth', 'verified'])->name('Proveedores.update');
 
 
 // Ruta para eliminar proveedores
-Route::delete('/eliminarProveedor-{id}', [ProveedoresController::class, 'delete'])
+Route::get('/eliminarProveedor-{id}', [ProveedoresController::class, 'delete'])
     ->middleware(['auth', 'verified'])
-    ->name('delete');
+    ->name('deleteProveedor');
+
+
+
+
+
+
+
+
+    // Rutas para los informes 
+
+Route::get('/Informe', [InformesController::class, 'listar'])->middleware(['auth', 'verified'])->name('Informe');
+
+
 //RUTAS DEL DASHBOARD
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,4 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+
+
+
+require __DIR__ . '/auth.php';

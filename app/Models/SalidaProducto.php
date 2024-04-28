@@ -12,6 +12,6 @@ class SalidaProducto extends Model
 
     public function producto()
     {
-        return $this->belongsTo(TbProducto::class, 'ID_producto');
+        return $this->belongsTo(tb_producto::class, 'ID_producto');
     }
 }

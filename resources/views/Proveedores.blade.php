@@ -27,7 +27,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                <form action="{{ route('create.proveedor') }}" method="post">
+                                    <form action="{{ route('create.proveedor') }}" method="post">
 
                                         @csrf
                                         <div class="mb-3">
@@ -94,8 +94,7 @@
                                     <th>{{ $item->Direccion }}</th>
                                     <th>{{ $item->Correo_electronico }}</th>
                                     <th>
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="btn btn-danger btn-sm">
+                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}">
                                             <i class="fa-solid fa-circle-minus"></i>
                                         </a>
 
@@ -104,31 +103,36 @@
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </th>
-<!-- Modal para eliminar -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Proveedor</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Deseas eliminar el Proveedor?
-            </div>
-            <div class="modal-footer">
-                <form action="{{ route('delete', ['id' => $item->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Confirmar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Actualizar -->
-<div class="modal fade" id="exampleModal2{{ $item->id }}" tabindex="-1"
+                                    <!-- Modal para eliminar -->
+                                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar
+                                                        Producto</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Deseas eliminar el Proveedor {{ $item->Nombre }} ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                        <button type="button" class="btn btn-primary" onclick="eliminarProveedor('{{ route("deleteProveedor", $item->id) }}')">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function eliminarProveedor(url) {
+                                            window.location.href = url;
+                                        }
+                                    </script>
+                                    
+                                    <!-- Modal para Actualizar -->
+                                    <div class="modal fade" id="exampleModal2{{ $item->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -139,7 +143,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    
+
                                                     <form action="{{ route('Proveedores.update') }}" method="post">
                                                         @csrf
                                                         <div class="mb-3">
@@ -147,7 +151,8 @@
                                                                 Proveedor</label>
                                                             <input type="text" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtidproveedor" value="{{ $item->id }}" readonly>
+                                                                name="txtidproveedor" value="{{ $item->id }}"
+                                                                readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="exampleInputEmail1"
@@ -175,7 +180,8 @@
                                                                 Electronico</label>
                                                             <input type="text" class="form-control"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                name="txtcorreo" value = "{{ $item->Correo_electronico }}">
+                                                                name="txtcorreo"
+                                                                value = "{{ $item->Correo_electronico }}">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

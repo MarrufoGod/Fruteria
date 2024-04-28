@@ -1,15 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Frutas') }}
-
-
-            @if (session('Correcto'))
-                <div class="alert alert-success">{{ session('Correcto') }}</div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
-            @endif
+            {{ __('Productos') }}
         </h2>
     </x-slot>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,6 +15,14 @@
         window.location.href = url;
     }
 </script>
+<div>
+    @if (session('Correcto'))
+        <div class="alert alert-success">{{ session('Correcto') }}</div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+</div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -179,7 +179,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="button" class="btn btn-primary" onclick="eliminarProducto('{{ route("delete", $item->id) }}')">Confirmar</button>
+                                                        <button type="button" class="btn btn-primary" onclick="eliminarProducto('{{ route("deleteProducto", $item->id) }}')">Confirmar</button>
                                                 </div>
                                             </div>
                                         </div>
